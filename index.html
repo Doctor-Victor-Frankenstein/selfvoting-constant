@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Selfvoting constant</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat|Sansita" rel="stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+		<script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>		
+	</head>
+	<body onload="getAPR()">
+		<div class="container">
+            <div class="jumbotron">
+                <h1>Selfvoting Constant</h1>
+                <p>By <a href="http://steemit.com/@jga">@jga</a></p>
+                <p>This is the annual percent rate from an initial investment of STEEM POWER that a selfvoter can obtain by abusing the selfvoting. That is, making comments with no added value every 144 minutes. <br>See the details <a href="http://steemit.com/@jga">here</a>.</p>
+                
+            </div>
+            <div class="row">
+                <h3 id="APR100">APR_100 = Calculating...</h2>
+                <p>This is the annual percent rate achieved if the rewards are taken 100% power up.</p>
+            </div>
+            <div class="row">
+                <h3 id="APR5050">APR_50/50 = Calculating...</h2>
+                <p>This is the annual percent rate achieved if the rewards are taken 50% SP - 50% SBD. And next, exchanging all SBD in the market to Steem Power.</p>
+            </div>
+            <div class="row">
+                <h1>Calculator</h1>
+                <div class="form-group">
+                    <label for="steem-power">Steem Power</label>
+                    <input type="text" class="form-control" id="steem-power" placeholder="steem power">
+                    <button class="btn" type="button" onclick="calculate()">Calculate</button>
+                </div>
+            </div>
+            <div class="row">
+                <p>Estimated value: <span id="ini-val"></span></p>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <h3>Month</h3>
+                </div>
+                <div class="col-sm-3">
+                    <h3>APR_100</h3>
+                </div>
+                <div class="col-sm-3">
+                    <h3>APR_50/50</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>1: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month1apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month1apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>2: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month2apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month2apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>3: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month3apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month3apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>4: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month4apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month4apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>5: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month5apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month5apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>6: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month6apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month6apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>7: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month7apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month7apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>8: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month8apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month8apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>9: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month9apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month9apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>10: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month10apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month10apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>11: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month11apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month11apr5050">400 USD</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <p>12: </p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month12apr100">300 SP</p>
+                </div>
+                <div class="col-sm-3">
+                    <p id="month12apr5050">400 USD</p>
+                </div>
+            </div>            
+		</div>
+			
+		<div id="footer" class="container-fluid">
+			<span id="steemactivityby" class="is_ml"> Selfvoting constant by <a href="https://steemit.com/@jga/">@jga</a></span><br>
+			<span id="seeitongithub" class="is_ml"> See it on <a href="https://github.com/joticajulian/steem-activity/">github.com</a></span>						
+		</div>
+	</body>
+	<script src="./js/selfvoting_constant.js"></script>		
+</html>
